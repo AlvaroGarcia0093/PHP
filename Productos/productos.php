@@ -17,6 +17,7 @@
         $temp_precio = depurar($_POST["precio"]);
         $temp_descripcion = depurar($_POST["descripcion"]);
         $temp_cantidad = depurar($_POST["cantidad"]);
+        $imagen = depurar($_POST["imagen"]);
 
         if(strlen($temp_producto) == 0) {
             $err_producto = "El campo es obligatorio";
@@ -47,7 +48,7 @@
             $cantidad = $temp_cantidad;
         }
 
-        $sql = "INSERT INTO productos(nombreProducto, precio, descripcion, cantidad) VALUES('$nombreProducto', '$precio', '$descripcion', '$cantidad')";
+        $sql = "INSERT INTO productos(nombreProducto, precio, descripcion, cantidad, imagen) VALUES('$nombreProducto', '$precio', '$descripcion', '$cantidad', '$imagen')";
 
         $conexion -> query($sql);
     }
@@ -70,6 +71,11 @@
             <div class="mb-3">
                 <label for="" class="form-label">Cantidad</label>
                 <input type="text" name="cantidad" class="form-control"><?php if(isset($err_cantidad)) echo $err_cantidad ?>
+            </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label">Imagen</label>
+                <input type="file" name="imagen" class="form-control"><?php if(isset($err_imagen)) echo $err_imagen ?>
             </div>
             <input type="submit" value="Enviar" class="btn btn-primary">
         </form>
